@@ -1,6 +1,6 @@
 version: "3.7"
 
-services: 
+services:
   theia:
     labels:
       - "traefik.http.routers.${PROJECT_NAME}_ide.rule=Host(`${THEIA_URL}`)"
@@ -11,9 +11,6 @@ services:
     image: traefik:v2.2
     container_name: "${PROJECT_NAME}_traefik"
     command: --api.insecure=true --providers.docker
-    networks:
-      xingu:
-        ipv4_address: 172.31.1.1
     ports:
       - '80:80'
       - '8080:8080' # Dashboard
