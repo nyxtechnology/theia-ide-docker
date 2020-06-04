@@ -1,0 +1,21 @@
+version: "3.7"
+
+services: 
+  theia:
+    labels:
+      - "traefik.http.routers.${PROJECT_NAME}_ide.rule=Host(`${THEIA_URL}`)"
+      - "traefik.http.routers.${PROJECT_NAME}_ide.middlewares=auth_ide"
+      - "traefik.http.middlewares.auth_ide.basicauth.users=${IDE_HTTP_ACCESS}"
+
+  traefik:
+    image: traefik:v2.2
+    container_name: "${PROJECT_NAME}_traefik"
+    command: --api.insecure=true --providers.docker
+    networks:
+      xingu:
+        ipv4_address: 172.31.1.1
+    ports:
+      - '80:80'
+      - '8080:8080' # Dashboard
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
