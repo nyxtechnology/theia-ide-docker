@@ -2,6 +2,8 @@ version: "3.7"
 
 services:
   theia:
+    ports:
+    - 3000:80
     labels:
       - "traefik.http.routers.${PROJECT_NAME}_ide.rule=Host(`${THEIA_URL}`)"
       - "traefik.http.routers.${PROJECT_NAME}_ide.middlewares=auth_ide"

@@ -5,6 +5,8 @@ services:
     build:
       context: .
     container_name: "${PROJECT_NAME}_ide"
+    ports:
+    - 3000:3000
     volumes:
       - ./:/home/project:cached
 #    labels:
