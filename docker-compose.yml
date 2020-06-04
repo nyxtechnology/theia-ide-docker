@@ -1,0 +1,14 @@
+version: "3.7"
+
+services: 
+  theia:
+    build:
+      context: .
+    container_name: "${PROJECT_NAME}_ide"
+    volumes:
+      - ./:/home/project:cached
+#    labels:
+#      - "traefik.http.routers.${PROJECT_NAME}_ide.rule=Host(`ide.revax.com.br`)"
+#      - "traefik.http.routers.${PROJECT_NAME}_ide.middlewares=auth_ide"
+#      - "traefik.http.middlewares.auth_ide.basicauth.users=${IDE_HTTP_ACCESS}"
+
